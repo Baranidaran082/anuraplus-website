@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Confirmation</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="payment-body">
+    <div class="container" style="padding-top: 50px; padding-bottom: 50px">
+      <form
+        id="payment-submission-form"
+        class="order-form"
+        name="PaymentForm"
+        method="POST"
+        netlify
+        data-netlify-honeypot="bot-field"
+        action="/success.html"
+        style="
+          max-width: 600px;
+          margin: 0 auto;
+          background-color: var(--secondary-color);
+          padding: 40px;
+          border-radius: 8px;
+        "
+      >
+        <input type="hidden" name="form-name" value="PaymentForm" />
+        <input type="hidden" name="bot-field" />
+
+        <div id="step-two" class="form-step">
+          <h3 class="step-header">2. Complete Payment via UPI QR</h3>
+          <p>
+            Scan the QR code using GPay, PhonePe, or Paytm to complete your
+            order payment.
+          </p>
+
+          <div class="qr-code-display">
+            <img
+              src="./images/upi-qr-code.png"
+              alt="UPI Payment QR Code"
+              class="upi-qr-img"
+            />
+          </div>
+
+          <p class="upi-id-text">Target UPI ID: **yourclient@okaxis**</p>
+
+          <p class="payment-instruction">
+            <strong>ACTION REQUIRED:</strong> Once payment is successful, click
+            the **Submit Order** button below to send us your final payment
+            confirmation.
+          </p>
+
+          <div
+            data-netlify-recaptcha="true"
+            style="margin-top: 20px; margin-bottom: 20px"
+          ></div>
+
+          <button
+            type="submit"
+            class="cta-button submit-button final-submit-btn"
+          >
+            I Have Paid - Submit Order Confirmation
+          </button>
+
+          <a
+            href="index.html#order-form-section"
+            class="back-button"
+            style="display: block; margin-top: 15px"
+          >
+            &lt; Back to Shipping Info (If you need to edit)
+          </a>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

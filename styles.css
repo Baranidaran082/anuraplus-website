@@ -1,0 +1,1250 @@
+/* Base Reset and Variables */
+:root {
+    --primary-color: #000000; /* True Black for shadows/accents */
+    --secondary-color: #1A1A1A; /* Deep Dark Gray for Background */
+    --accent-color: #f7a823; /* Gold/Yellow Accent */
+    --text-color: #ffffff; /* White Text for dark background */
+    --text-color: #eeeeee; /* Softer White for readability */
+    --light-gray: #333333; /* Darker grey for borders/dividers */
+    /* Define the height of your fixed navigation bar */
+    --nav-height: 60px; 
+    --primary-red: #e62b1e;
+    --dark-bg: #141414;
+}
+/* --- Global Smooth Scrolling --- */
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- BASE & UTILITIES --- */
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    background-color: var(--secondary-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+
+
+/* 1. Navigation Bar (Desktop & Base Styles) */
+.navbar {
+    padding: 0; /* Remove horizontal padding */
+    background-color: black;
+    border-bottom: 1px solid var(--light-gray);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-content {
+    /* Apply the necessary flex properties here to control inner alignment */
+    display: flex;
+    justify-content: space-between; /* Pushes Logo to left, Links to right */
+    align-items: center;
+    padding: 20px 0; /* Apply vertical padding here */
+}
+
+/* Logo Styling */
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color:  #f7a823;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    cursor: pointer;
+    
+    /* FIX 1: Prevents the logo text from wrapping onto a new line */
+    white-space: nowrap; 
+}
+
+.logo:hover {
+    color: var(--accent-color); /* Changes color on hover */
+}
+
+/* Desktop Links Container */
+.nav-links {
+    display: flex;
+    gap: 30px; /* Increase gap between links */
+    align-items: center;
+}
+
+/* Individual Link Styling */
+.nav-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 400; 
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: var(--accent-color);
+}
+
+/* Hamburger Toggle Base Styling (Hidden on Desktop) */
+.menu-toggle {
+    display: none; /* Hide by default on desktop */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: var(--text-color);
+    transition: all 0.3s ease-in-out;
+}
+
+/* --- MOBILE MENU & ANIMATION STYLES --- */
+.mobile-menu {
+position: fixed; /* Keep it fixed relative to the viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* FIX: Crucial: ensures it covers the entire screen, even if the content is taller */
+
+    /* FIX: Crucial: ensures it covers the entire screen, even if the content is taller */
+
+    background-color: var(--primary-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+
+/* FIX: Center the block elements (the links) */
+    text-align: center; 
+    z-index: 999;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.mobile-menu.active {
+    transform: translateY(0); /* Slides down when active */
+}
+
+.mobile-link {
+color: var(--text-color);
+    text-decoration: none;
+    /* FIX: Set display to block and center text */
+    display: block; 
+    text-align: center; 
+    
+    /* FIX: Adjusted padding for better vertical spacing */
+    padding: 18px 30px; 
+    font-size: 18px; 
+    font-weight: 500;
+    
+    /* Optional: Add a subtle horizontal line for separation */
+    border-bottom: 1px solid var(--light-gray); 
+    
+    transition: background-color 0.2s
+}
+
+.mobile-link:hover {
+    background-color: var(--light-gray);
+}
+
+
+/* --- RESPONSIVE MEDIA QUERIES --- */
+@media (max-width: 1200px) {
+    .navbar-content {
+        padding: 20px 15px; /* Re-apply padding on the sides for smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    /* Show the hamburger menu toggle */
+    .menu-toggle {
+        display: block;
+    }
+
+    /* FIX 2: CRITICAL: Hide the desktop nav links and ensure it sticks */
+    .nav-links {
+        display: none !important; 
+    }
+    
+    /* Optional: Shrink the logo on mobile */
+    .logo {
+        font-size: 20px; 
+    }
+    /* FIX: Ensure the mobile menu starts below the header */
+    .mobile-menu {
+        top: 85px; /* Must match the height calculated above */
+    }
+
+    /* Hamburger to 'X' animation when active */
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
+
+/* Removed .cart-icon styling as the element is removed */
+
+/* 2. Hero Section (New Two-Column Layout) */
+.hero-section {
+padding: 60px 0; 
+    /* Slightly less dark background for the section to differentiate it from the true black header */
+        /* Background treatment to simulate the dark, blurred backdrop */
+    background-color: #0A0A0A; 
+    
+    /* Layered Background: Gradients (for color hints) + Image (for texture) */
+    background-image: 
+
+
+        url('./black-particles-background.avif'); /* <<< CHECK THIS FILE NAME >>> */
+    
+    /* Control how the layers are sized and repeated */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; /* Gradients don't repeat, pattern does */
+
+    
+    /* Add a subtle drop shadow to the entire section for depth */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.hero-grid {
+    display: flex;
+    align-items: center; 
+    gap: 40px;
+    min-height: 500px; /* Ensure a minimum height for the hero */
+}
+
+/* Left Column: Image */
+.hero-image-col {
+    flex: 1; 
+    text-align: center;
+}
+
+.product-image-container {
+    max-width: 400px; 
+    margin: 0 auto;
+}
+
+.product-image {
+width: 100%;
+    height: auto;
+    display: block;
+    background-color: transparent; 
+    
+    /* --- PSEUDO-3D AND LIFT EFFECTS --- */
+    
+    /* 1. Subtle lift effect (moves the image slightly up) */
+    transform: translateY(-5px); 
+    
+    /* 2. Deep, subtle shadow to mimic depth on the dark background */
+    /* Syntax: horizontal-offset vertical-offset blur-radius spread-radius color */
+    filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.9));
+    
+    /* 3. Transition for a smooth hover effect (optional but nice) */
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+}
+/* Optional: Add a subtle hover effect to make it interactve */
+.product-image:hover {
+    transform: translateY(-8px); /* Lifts it higher on hover */
+    filter: drop-shadow(0px 15px 30px rgba(0, 0, 0, 0.95)); /* Deepens the shadow on hover */
+}
+
+
+/* Right Column: Text and CTA */
+.hero-text-col {
+    flex: 1; 
+    padding-right: 20px; 
+    color: var(--text-color); /* Set text color to white */
+}
+
+.headline {
+    font-size: 44px;
+    font-weight: 800;
+    color: var(--text-color); /* White headline */
+    margin-bottom: 10px;
+    line-height: 1.1;
+}
+
+.subheadline {
+    font-size: 22px;
+    color: var(--text-color);
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.rating {
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.stars {
+    color: var(--accent-color);
+    letter-spacing: 2px;
+}
+
+.price-container {
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.original-price {
+    color: #888; /* Lighter gray for struck-out price */
+    text-decoration: line-through;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.sale-price {
+    color: var(--accent-color);
+    font-size: 38px;
+}
+
+.short-description {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.cta-button {
+background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: 15px 40px;
+    border: none;
+    border-radius: 5px;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-transform: uppercase;
+    
+    /* Apply the pulse animation */
+    animation: pulse 2s infinite; 
+    
+    box-shadow: 0 4px 10px rgba(247, 168, 35, 0.4);
+    width: auto; 
+    display: block; 
+    max-width: 350px;
+}
+
+.cta-button:hover {
+    background-color: #d18d1f;
+}
+/* --- Keyframes for Pulsing Animation --- */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(247, 168, 35, 0.6);
+    }
+    70% {
+        transform: scale(1.03); /* Slight growth */
+        box-shadow: 0 0 0 15px rgba(247, 168, 35, 0); /* Outer ripple */
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+
+/* Placeholder for next section */
+.next-section {
+    padding: 50px 0;
+    text-align: center;
+    background-color: var(--light-gray); /* Use a darker divider color */
+    color: var(--text-color);
+}
+
+
+/* Responsive Adjustments: Stack columns on mobile */
+@media (max-width: 900px) {
+    .hero-grid {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .hero-image-col {
+        order: 1; 
+    }
+
+    .hero-text-col {
+        order: 2;
+        padding-right: 0;
+        margin-top: 20px;
+    }
+    
+    .headline {
+        font-size: 32px;
+    }
+
+    .subheadline {
+        font-size: 18px;
+    }
+
+    .cta-button {
+        margin: 0 auto; 
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 500px) {
+    .headline {
+        font-size: 26px;
+    }
+    .price-container {
+        font-size: 24px;
+    }
+    .sale-price {
+        font-size: 30px;
+    }
+}
+
+                /* ######################################################
+                   ######################################################
+                   ###################################################### */
+
+
+/* --- 2. CORE BENEFITS SECTION STYLES --- */
+.core-benefits-section {
+    background-color: var(--primary-color); /* True Black background for contrast */
+    padding: 80px 0;
+    color: var(--text-color);
+    border-top: 1px solid var(--light-gray);
+}
+
+/* Add this style for the title above the three icons */
+.section-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-color); /* White text */
+    text-align: center;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+.benefits-divider {
+    border: none;
+    height: 1px;
+    background-color: var(--light-gray);
+    margin: 40px 0;
+}
+
+/* 2.1 Top Icon Grid */
+.top-benefits-grid {
+display: grid;
+    /* Defines 3 equal-width columns for desktop */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px;
+    text-align: center;
+    padding: 40px 0;
+}
+
+.top-benefit-item {
+padding: 20px;
+    border-radius: 8px;
+}
+
+.top-benefit-icon {
+display: block;
+    margin-bottom: 10px;
+
+}
+.top-benefit-icon img {
+    width: 200px; /* Adjust size as needed, 50px is a good start */
+    height: 200px;
+    object-fit: contain; /* Ensures the image scales properly without cropping */
+}
+
+.top-benefit-desc {
+    font-size: 20px;
+    font-weight: 500;
+    color: #ccc; /* Slightly lighter gray */
+}
+
+/* 2.2 Main Detailed Benefits Grid */
+.detailed-benefits-grid {
+    display: flex;
+    gap: 60px;
+    align-items: flex-start; /* Aligns content to the top */
+}
+/* Find this block in your styles.css */
+
+/* Left Column: Narrative */
+.narrative-col, .advantages-col {
+    flex: 1;
+    min-width: 45%;
+}
+
+
+.narrative-title, .advantages-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    color: white; /* Title color from the image */
+}
+
+.narrative-title strong, .advantages-title strong {
+    color: var(--text-color); /* Bold part of title is white */
+}
+
+
+/* Update the .narrative-text block in styles.css */
+.narrative-text {
+    /* FIX: Increase font size for readability and impact */
+    font-size: 18px; 
+    line-height: 1.7;
+    /* margin-bottom: 20px; */
+    color: #aaaaaa;
+}
+
+
+.narrative-icon-large img {
+/* Set specific, controlled dimensions */
+    width: 100%; 
+    height: 100%; /* IMPORTANT: Maintain aspect ratio */ 
+    
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+
+}
+/* --- Responsive Fix for Section 2: Top Benefits Grid --- */
+
+@media (max-width: 768px) {
+    /* FIX: Override the 3-column definition with 1 column */
+    .top-benefits-grid {
+        grid-template-columns: 1fr; /* Change from 3 columns to 1 column */
+        gap: 30px; 
+        padding: 0 40px; 
+    }
+    
+    .top-benefit-item {
+        margin: 0 auto; 
+        max-width: 300px; /* Limits the width of the stacked item */
+    }
+}
+/* Right Column: Advantages List */
+.advantages-list {
+    list-style: none;
+    padding: 0;
+}
+
+.advantages-list li {
+    background-color: var(--secondary-color); /* Dark gray background for list items */
+    padding: 20px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    font-size: 16px;
+}
+
+.advantage-bullet-icon {
+    font-size: 24px;
+    color: var(--accent-color);
+    flex-shrink: 0;
+}
+
+.advantages-list li strong {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 5px;
+}
+
+.advantages-list li p {
+    font-size: 14px;
+    color: #bbbbbb;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 900px) {
+    .detailed-benefits-grid {
+        flex-direction: column; /* Stack columns on tablet/mobile */
+        gap: 40px;
+    }
+
+    .narrative-col, .advantages-col {
+        min-width: 100%;
+    }
+    
+    .narrative-icon-large {
+        text-align: left; /* Keep large icon aligned with text */
+    }
+}
+
+@media (max-width: 600px) {
+    .top-benefits-grid {
+        flex-direction: column; /* Stack top benefits on smaller mobile screens */
+    }
+
+    .narrative-title, .advantages-title {
+        font-size: 26px;
+    }
+}
+
+
+
+                 /* ############################################### */
+                 /* ############################################### */
+                 /* ############################################### */
+
+                 /* --- 3. DOCTOR'S AUTHORITY SECTION STYLES --- */
+.authority-section {
+    background-color: var(--primary-color); /* Deep dark background */
+    padding: 100px 0;
+    color: var(--text-color);
+}
+
+.authority-grid {
+    display: flex;
+    gap: 60px;
+    align-items: center; /* Vertically align content */
+}
+
+/* Left Column: Doctor Profile */
+.doctor-profile {
+    flex: 0 0 350px; /* Fixed width for the profile column on large screens */
+    text-align: center;
+}
+
+.doctor-image-placeholder {
+    /* Style for where the doctor's photo will be */
+    width: 280px;
+    height: 350px;
+    /* REMOVE THIS: background-color: var(--light-gray); */ 
+    border-radius: 6px;
+    margin: 0 auto 20px;
+    /* Remove the centering styles if you use object-fit: cover */
+    display: block;
+}
+
+.doctor-name {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.doctor-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--accent-color);
+}
+/* Add this new block to your styles.css */
+.doctor-img {
+    width: 100%;
+    height: 100%;
+    /* Ensures the image fills the box without being stretched */
+    object-fit: cover; 
+    border-radius: 6px; /* Inherit the container's rounded corners */
+}
+/* Right Column: Endorsement and Quote */
+.doctor-endorsement {
+    flex: 1;
+}
+
+.section-title-alt {
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 30px;
+    color: var(--text-color);
+}
+
+.section-title-alt strong {
+    color: var(--accent-color);
+}
+
+.section-title-alt i {
+    font-style: italic;
+    font-weight: 400;
+    color: #ccc;
+}
+
+.quote-text {
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 30px;
+    color: #aaaaaa;
+    border-left: 4px solid var(--accent-color);
+    padding-left: 20px;
+    font-style: italic;
+}
+
+.endorsement-signoff {
+    margin-bottom: 40px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.signoff-credentials {
+    font-size: 14px;
+    font-weight: 400;
+    color: #999;
+}
+
+/* Specific CTA button style for this section */
+.authority-cta {
+    font-size: 18px;
+    padding: 15px 30px;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .authority-grid {
+        flex-direction: column; /* Stack columns on smaller screens */
+        text-align: center;
+    }
+    
+    .doctor-profile {
+        flex: auto; /* Allow profile column to take full width */
+        margin-bottom: 30px;
+    }
+
+    .doctor-image-placeholder {
+        margin-bottom: 10px;
+    }
+
+    /* Ensure the quote text is left-aligned for readability when stacked */
+    .quote-text {
+        text-align: left; 
+        padding-left: 20px;
+        border-left: 4px solid var(--accent-color);
+    }
+    
+    .section-title-alt {
+        font-size: 30px;
+    }
+    /* Center the endorsement text when stacked */
+    .doctor-endorsement {
+        text-align: center;
+    }
+    
+    /* Ensure the quote text itself aligns left, even if the container is centered */
+    .doctor-endorsement .quote-text {
+        text-align: left;
+    }
+    
+    /* Ensure signoff aligns correctly */
+    .endorsement-signoff {
+        text-align: center;
+    }
+         .doctor-name {
+        font-size: 18px; /* Reduced from 22px */
+        margin-bottom: 3px;
+    }
+
+    /* Reduce the size of the Doctor's Title/Credentials */
+    .doctor-title {
+        font-size: 14px; /* Reduced from 16px */
+    }
+}
+
+
+
+
+                 /* ############################################### */
+                 /* ############################################### */
+                 /* ############################################### */
+
+                 /* --- 4. TESTIMONIALS SECTION STYLES --- */
+.testimonials-section {
+    background-color: var(--primary-color); /* Use the main dark background */
+    padding: 100px 0;
+}
+
+.section-title {
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center;
+    color: var(--text-color);
+    margin-bottom: 60px;
+}
+
+/* Testimonials Grid (3 columns for desktop) */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.testimonial-card {
+    background-color: var(--secondary-color); /* Dark card background */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border-top: 5px solid var(--accent-color); /* Subtle accent strip */
+}
+
+/* Star Rating Style */
+.rating {
+    margin-bottom: 15px;
+}
+
+.stars {
+    font-size: 24px;
+    color: var(--accent-color); /* Gold/Orange color for stars */
+}
+
+.review-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #cccccc;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.reviewer-name {
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text-color);
+    margin-bottom: 2px;
+}
+
+.reviewer-location {
+    font-size: 14px;
+    color: var(--accent-color);
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+    .section-title {
+        font-size: 32px;
+    }
+    
+    /* Change testimonials to stack in 1 column on smaller screens */
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+}
+
+
+/* --- New Styles for UGC Review Photos --- */
+
+/* Align stars and name at the top */
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.reviewer-name {
+    /* Combine name and location into one line for the header */
+    font-size: 14px;
+    font-weight: 500;
+    color: #cccccc;
+    margin: 0;
+}
+
+/* Container for the Image and Text */
+.review-content-body {
+    display: flex;
+    gap: 15px; /* Space between the image and text */
+    text-align: left; /* Ensure the review text remains readable (left-aligned) */
+}
+
+/* Style for the review photo container */
+.product-review-photo {
+    /* Define a fixed, small area for the UGC photo */
+    flex-shrink: 0; /* Prevents the image from shrinking */
+    width: 70px; 
+    height: 70px;
+    border-radius: 4px; 
+    overflow: hidden;
+    margin-top: 5px; /* Aligns the image nicely with the start of the text */
+}
+
+.ugc-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image fills the area */
+    display: block;
+}
+
+/* Ensure the review text takes up the rest of the space */
+.review-text {
+    flex-grow: 1;
+    margin: 0; /* Remove default margin */
+}
+
+/* Override the overall card alignment from the previous step */
+.testimonial-card {
+    /* Keep existing card styles... */
+    text-align: left; /* IMPORTANT: Reset to left-align the content inside the card */
+}
+
+/* Adjust star rating style */
+.stars {
+    font-size: 20px;
+}
+
+/* ################################################################
+################################################################
+################################################################ */
+/* --- 5. FINAL CTA/GUARANTEE STRIP --- */
+.final-cta-strip {
+    background-color: var(--accent-color); /* Bright, contrasting background */
+    padding: 20px 0;
+    text-align: center;
+    color: #000; /* Dark text on the bright background */
+}
+
+.final-cta-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap; /* Allows stacking on mobile */
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+
+.final-order-cta {
+    /* Style the button to contrast with the accent strip */
+    background-color: #000;
+    color: var(--accent-color);
+    border: 2px solid #000;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    margin-top: 15px; /* Space for stacking on mobile */
+    flex: 0 0 auto;
+}
+
+.final-order-cta:hover {
+    background-color: #333;
+    color: white;
+}
+
+/* Responsive adjustment for guarantee strip */
+@media (max-width: 768px) {
+    .final-cta-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    
+
+}
+
+/* ################################################################
+################################################################
+################################################################ */
+/* --- FOOTER STYLES --- */
+footer {
+    background-color: #000; /* Black background like the original */
+    color: #fff;
+    padding: 40px 5%; /* Vertical padding and 5% horizontal padding */
+
+    line-height: 1.6;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows columns to stack on small screens */
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 30px; /* Space above the legal text */
+}
+
+.footer-col {
+        color: #ffffff; /* Orange color for emphasis */
+    flex-basis: 22%; /* Each column takes about 22% of the width */
+    margin-bottom: 30px; /* Space between columns when stacked */
+    min-width: 200px; /* Minimum width before wrapping */
+}
+
+/* Headings */
+.footer-col h3,.footer-col h4  {
+     color: #f7a823;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+.footer-contact h4 {
+    /* Use the same primary color */
+    margin-bottom: 20px;
+    color: #f7a823;
+    /* Remove padding/border from the general column style if applied, or keep the existing style */
+}
+.contact-group {
+    margin-bottom: 20px;
+    color: #ccc; /* Space between Phone, Email, Support groups */
+}
+
+/* Label style (Phone, Email, Customer Support) */
+.contact-label {
+    /* Color matching the reddish-brown/orange in the original image */
+    color: #ffffff; 
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+/* Target the <a> tag with class .toll-free */
+.footer-contact a.toll-free:hover {
+    color: #f7a823; 
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    /* No need for cursor: pointer, as links naturally have it */
+}
+.contact-value {
+    /* Color matching the yellow/orange in the original image */
+    color: #ccc; /* Space between Phone, Email, Support groups */
+    font-size: 14px;
+    line-height: 1.4;
+}
+.footer-info h3 { /* Larger title for main company name */
+    font-size: 24px;
+}
+
+/* Links List */
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links a {
+    color: #ccc;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 8px;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #FFC300;
+}
+
+/* Contact Details */
+.contact-item {
+    display: block; /* Change from flex to block for vertical stacking */
+}
+.contact-item i {
+    display: none; /* Hide icons in this new structure */
+}
+
+.footer-contact a {
+    color:  #ccc;
+    text-decoration: none;
+}
+.footer-contact a:hover {
+    color: #f7a823;
+    text-decoration: underline;
+}
+/* Map Placeholder */
+#map-placeholder {
+    background-color: #333;
+    height: 150px; /* Height for the map box */
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+/* Legal Disclaimer */
+.footer-legal {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #333; /* Separator line */
+}
+.footer-legal p {
+    font-size: 12px;
+    color: #999;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* --- MEDIA QUERY FOR MOBILE DEVICES --- */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column; /* Stack all columns vertically */
+    }
+
+    .footer-col {
+        flex-basis: 100%; /* Each column takes full width */
+        min-width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .footer-col h3, .footer-col h4 {
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #333; /* Separator line for better distinction */
+    }
+}
+
+
+
+/* --- 5b. ORDER FORM SECTION STYLES --- */
+.order-form-container {
+    background-color: var(--secondary-color); /* Dark grey background */
+    padding: 80px 0;
+    text-align: center;
+    
+    /* Initially hide the form container */
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.7s ease-in-out, opacity 0.5s ease-in;
+}
+
+/* Class added by JavaScript to show the form */
+.order-form-container.is-visible {
+    max-height: 3000px; /* Needs to be larger than the content height */
+    opacity: 1;
+}
+
+.form-title {
+    font-size: 38px;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+.form-subtitle {
+    font-size: 18px;
+    color: #cccccc;
+    margin-bottom: 40px;
+}
+
+.order-form {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+/* General form group styling */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.order-form input[type="text"],
+.order-form input[type="email"],
+.order-form input[type="tel"],
+.order-form textarea,
+.order-form select {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background-color: #1a1a1a; /* Very dark input background */
+    /* FIX: Ensure the text is visible */
+    color: #ffffff; 
+    font-size: 16px;
+    /* For select boxes on some browsers, this helps */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.order-form textarea {
+    resize: vertical;
+}
+
+.shipping-details h3, .payment-step h3 {
+    font-size: 24px;
+    color: var(--text-color);
+    margin-bottom: 20px;
+    padding-top: 10px;
+    border-top: 1px dashed #333;
+}
+
+/* Ensure the Step 2 header is styled correctly */
+.step-header {
+    font-size: 28px;
+    color: var(--accent-color); /* Orange/Gold color */
+    margin-bottom: 25px;
+    padding-top: 10px;
+    border-bottom: 2px solid var(--accent-color);
+}
+
+/* Container for the QR Code - Ensures it looks official */
+.qr-code-display {
+    width: 250px;
+    height: 250px;
+    margin: 20px auto;
+    border: 4px solid var(--accent-color);
+    padding: 10px;
+    border-radius: 8px;
+    background-color: white; /* MUST be white for QR readability */
+}
+
+.upi-qr-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* UPI ID Text Style */
+.upi-id-text {
+    font-size: 16px;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+}
+
+/* Payment Instruction Text Style */
+.payment-instruction {
+    font-size: 18px;
+    color: var(--text-color); /* Assuming white/light text */
+    margin: 20px 0;
+}
+
+/* Final Submit Button (Assuming basic .cta-button style is defined elsewhere) */
+.final-submit-btn {
+    width: 100%; /* Make it full width of the form container */
+    /* Add any specific styles that differentiate it from the previous button if needed */
+}
+
+/* Back Button Style */
+.back-button {
+    background: none;
+    border: none;
+    color: #cccccc;
+    font-size: 14px;
+    margin-top: 15px;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.3s;
+}
+
+.back-button:hover {
+    color: var(--accent-color);
+}
+
+/* Responsive adjustment for small screens */
+@media (max-width: 600px) {
+    .qr-code-display {
+        width: 200px;
+        height: 200px;
+    }
+}
