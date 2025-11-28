@@ -1124,6 +1124,14 @@ footer {
     max-height: 3000px; /* Needs to be larger than the content height */
     opacity: 1;
 }
+/* Style the mobile prompt */
+.mobile-prompt {
+    text-align: center;
+    color: #FFC300; /* Use your accent color */
+    margin: 10px 0 20px;
+    font-size: 14px;
+    font-weight: bold;
+}
 
 .form-title {
     font-size: 38px;
@@ -1247,4 +1255,37 @@ footer {
         width: 200px;
         height: 200px;
     }
+}
+
+
+/* Ensure the link container handles the image correctly */
+.qr-code-container {
+    text-align: center; /* Centers the image/link */
+    display: block;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+/* Ensure the image fills the link area */
+.qr-image {
+    max-width: 250px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    /* Optional: Add a subtle effect to show it's clickable */
+    transition: opacity 0.2s;
+}
+
+.qr-image:active {
+    /* Slightly dim the image when tapped */
+    opacity: 0.8; 
+}
+
+/* Style the mobile prompt */
+.mobile-prompt {
+    text-align: center;
+    color: #FFC300; /* Use your accent color */
+    margin: 10px 0 20px;
+    font-size: 14px;
+    font-weight: bold;
 }

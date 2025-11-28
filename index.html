@@ -444,16 +444,20 @@
                 <div id="step-two" class="form-step" style="display: none">
                     
                     <h3 class="step-header">2. Complete Payment via UPI QR</h3>
-                    <p style="color: white;">
-                        Scan the QR code using GPay, PhonePe, or Paytm to complete your order payment.
-                    </p>
+                    <div class="payment-section">
+                        <p style="color: white;">Scan the QR code using GPay, PhonePe, or Paytm to complete your order payment.</p>
+                        
+                        <div class="qr-code-container">
+                            <a href="upi://pay?pa=9944427430&pn=ANURA%2B&mc=0000&tr=123456789&am=1999" 
+                              class="qr-clickable-link">
+                                
+                                <img src="WhatsApp Image 2025-10-06 at 15.10.29.jpeg" alt="Payment QR Code" class="qr-image">
+                                
+                            </a>
+                        </div>
 
-                    <div class="qr-code-display">
-                        <img
-                            src="./WhatsApp Image 2025-10-06 at 15.10.29.jpeg"
-                            alt="UPI Payment QR Code"
-                            class="upi-qr-img"
-                        />
+                        <p class="mobile-prompt">--- Tap the QR Code to pay via GPay/UPI ---</p>
+                        
                     </div>
 
                     <p class="upi-id-text">Target UPI ID: 9944427430@upi</p>
