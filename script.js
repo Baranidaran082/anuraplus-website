@@ -210,3 +210,49 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         });
+
+
+
+        // Function to generate a unique UPI link for a specific app
+function generateUpiLink(upiId, amount) {
+    // 1. Generate a unique Transaction ID using the current time
+    // GPay and PhonePe require this to be unique for every payment attempt.
+    const transactionId = 'ANURA' + new Date().getTime(); 
+    
+    // 2. Define static parameters
+    const payeeName = 'ANURA%2B'; // URL-encoded for "ANURA+"
+    const merchantCode = '0000';
+    
+    // 3. Construct the full UPI URL
+    const baseUrl = 
+        `upi://pay?pa=${upiId}&pn=${payeeName}&mc=${merchantCode}&tr=${transactionId}&am=${amount}`;
+    
+    return baseUrl;
+}
+
+// === MAIN LOGIC TO SET THE CLICKABLE QR CODE LINK ===
+document.addEventListener('DOMContentLoaded', () => {
+    
+    const qrCodeLinkElement = document.getElementById('upi-payment-link');
+
+    // NOTE: You MUST replace this with the actual final order amount variable!
+    const finalOrderAmount = 1999; 
+
+    // NOTE: Replace YOUR_UPI_ID with your actual VPA
+    const yourUpiId = '9944427430@upi'; 
+
+    if (qrCodeLinkElement) {
+        // Generate the unique link and set it as the destination URL
+        const dynamicUpiUrl = generateUpiLink(yourUpiId, finalOrderAmount);
+        
+        // Set the Href attribute dynamically
+        qrCodeLinkElement.href = dynamicUpiUrl;
+        
+        console.log("UPI Link set successfully:", dynamicUpiUrl);
+    }
+    
+    // Troubleshooting PhonePe: PhonePe is very sensitive. 
+    // If GPay works but PhonePe still errors, you may need to try 
+    // using your VPA suffix specific to PhonePe (@ybl, @ibl, etc.)
+    // and/or simplify the TR ID further.
+});
