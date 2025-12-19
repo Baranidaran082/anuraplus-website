@@ -256,3 +256,46 @@ document.addEventListener('DOMContentLoaded', () => {
     // using your VPA suffix specific to PhonePe (@ybl, @ibl, etc.)
     // and/or simplify the TR ID further.
 });
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const faqButtons = document.querySelectorAll('.faq-question');
+
+    faqButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const faqId = button.getAttribute('data-faq-id');
+            const answerContent = document.getElementById(faqId);
+            const icon = button.querySelector('.icon');
+
+            // Check if the clicked item is currently open
+            const isCurrentlyOpen = answerContent.classList.contains('open');
+
+            // Close all other open items
+            document.querySelectorAll('.faq-answer-content.open').forEach(openAnswer => {
+                if (openAnswer.id !== faqId) {
+                    openAnswer.classList.remove('open');
+                    openAnswer.previousElementSibling.setAttribute('aria-expanded', 'false');
+                    openAnswer.previousElementSibling.querySelector('.icon').textContent = '+';
+                    openAnswer.previousElementSibling.style.color = '#ffffff'; // Reset color
+                }
+            });
+
+            // Toggle the clicked item's state
+            if (isCurrentlyOpen) {
+                // Close it
+                answerContent.classList.remove('open');
+                button.setAttribute('aria-expanded', 'false');
+                icon.textContent = '+';
+                button.style.color = '#ffffff'; // Reset color when closed
+            } else {
+                // Open it
+                answerContent.classList.add('open');
+                button.setAttribute('aria-expanded', 'true');
+                icon.textContent = '-';
+                button.style.color = '#ffcc00'; // Set color when open
+            }
+        });
+    });
+});

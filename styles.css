@@ -26,7 +26,7 @@ html {
 body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
-    background-color: var(--secondary-color);
+    background-color: black;
 }
 
 .container {
@@ -205,18 +205,8 @@ color: var(--text-color);
 padding: 60px 0; 
     /* Slightly less dark background for the section to differentiate it from the true black header */
         /* Background treatment to simulate the dark, blurred backdrop */
-    background-color: #0A0A0A; 
-    
-    /* Layered Background: Gradients (for color hints) + Image (for texture) */
-    background-image: 
+    background-color: #000000; 
 
-
-        url('./black-particles-background.avif'); /* <<< CHECK THIS FILE NAME >>> */
-    
-    /* Control how the layers are sized and repeated */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat; /* Gradients don't repeat, pattern does */
 
     
     /* Add a subtle drop shadow to the entire section for depth */
@@ -451,14 +441,14 @@ background-color: var(--accent-color);
 .top-benefits-grid {
 display: grid;
     /* Defines 3 equal-width columns for desktop */
-    grid-template-columns: repeat(3, 1fr); 
+    grid-template-columns: repeat(5, 1fr); 
     gap: 30px;
     text-align: center;
     padding: 40px 0;
 }
 
 .top-benefit-item {
-padding: 20px;
+/* padding: 20px; */
     border-radius: 8px;
 }
 
@@ -529,6 +519,13 @@ display: block;
 
 }
 /* --- Responsive Fix for Section 2: Top Benefits Grid --- */
+/* 💻 Transition to 3 or 2 columns on mid-sized tablets (Optional) */
+@media (max-width: 1100px) {
+    .top-benefits-grid {
+        /* You can switch to 3 columns here if needed */
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
 
 @media (max-width: 768px) {
     /* FIX: Override the 3-column definition with 1 column */
@@ -558,6 +555,12 @@ display: block;
     align-items: flex-start;
     gap: 15px;
     font-size: 16px;
+}
+.advantage-content {
+    /* Use flex-grow to make the content block take up the remaining space */
+    flex-grow: 1; 
+    /* Ensures the main text and paragraph stack vertically (default block behavior) */
+    display: block; 
 }
 
 .advantage-bullet-icon {
@@ -613,160 +616,59 @@ display: block;
                  /* ############################################### */
                  /* ############################################### */
 
-                 /* --- 3. DOCTOR'S AUTHORITY SECTION STYLES --- */
-.authority-section {
-    background-color: var(--primary-color); /* Deep dark background */
-    padding: 100px 0;
-    color: var(--text-color);
+/* --- Overall Section Styling --- */
+.preparation-section {
+    background-color: #000000; /* Dark background color to match the image */
+    padding-top: 60px;
+    padding-bottom: 0px; /* Reduced space below the content */
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #fff;
 }
 
-.authority-grid {
-    display: flex;
-    gap: 60px;
-    align-items: center; /* Vertically align content */
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 30px;
 }
 
-/* Left Column: Doctor Profile */
-.doctor-profile {
-    flex: 0 0 350px; /* Fixed width for the profile column on large screens */
+/* --- Image Wrapper for Centering and Max Width --- */
+.image-wrapper {
+    /* Center the image block horizontally */
+/* Sets the maximum width the image can take up on desktop */
+    max-width: 600px; 
+    
+    /* Centers the container block itself */
+    margin: 0 auto; 
+    
+    /* Used to fix the small space issue below inline images */
+    line-height: 0;
     text-align: center;
 }
 
-.doctor-image-placeholder {
-    /* Style for where the doctor's photo will be */
-    width: 280px;
-    height: 350px;
-    /* REMOVE THIS: background-color: var(--light-gray); */ 
-    border-radius: 6px;
-    margin: 0 auto 20px;
-    /* Remove the centering styles if you use object-fit: cover */
-    display: block;
+/* --- Responsive Image Styling --- */
+.responsive-diagram-image {
+    /* Ensures the image will never exceed the size of its parent container (image-wrapper) */
+    max-width: 100%; 
+    /* Allows the image to scale down fluidly */
+    height: auto; 
+    /* Ensures the image is displayed as a block element */
+    display: block; 
+    /* If the image wrapper is larger than the image, this centers the image */
+    margin: 0 auto;
 }
 
-.doctor-name {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 5px;
-}
-
-.doctor-title {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--accent-color);
-}
-/* Add this new block to your styles.css */
-.doctor-img {
-    width: 100%;
-    height: 100%;
-    /* Ensures the image fills the box without being stretched */
-    object-fit: cover; 
-    border-radius: 6px; /* Inherit the container's rounded corners */
-}
-/* Right Column: Endorsement and Quote */
-.doctor-endorsement {
-    flex: 1;
-}
-
-.section-title-alt {
-    font-size: 38px;
-    font-weight: 700;
-    line-height: 1.3;
-    margin-bottom: 30px;
-    color: var(--text-color);
-}
-
-.section-title-alt strong {
-    color: var(--accent-color);
-}
-
-.section-title-alt i {
-    font-style: italic;
-    font-weight: 400;
-    color: #ccc;
-}
-
-.quote-text {
-    font-size: 18px;
-    line-height: 1.7;
-    margin-bottom: 30px;
-    color: #aaaaaa;
-    border-left: 4px solid var(--accent-color);
-    padding-left: 20px;
-    font-style: italic;
-}
-
-.endorsement-signoff {
-    margin-bottom: 40px;
-    font-size: 18px;
-    font-weight: 600;
-}
-
-.signoff-credentials {
-    font-size: 14px;
-    font-weight: 400;
-    color: #999;
-}
-
-/* Specific CTA button style for this section */
-.authority-cta {
-    font-size: 18px;
-    padding: 15px 30px;
-}
-
-/* --- Responsive Adjustments --- */
-@media (max-width: 768px) {
-    .authority-grid {
-        flex-direction: column; /* Stack columns on smaller screens */
-        text-align: center;
+/* --- Optional: Media Query for smaller screens --- */
+@media (max-width: 600px) {
+    .section-title {
+        font-size: 2rem;
     }
-    
-    .doctor-profile {
-        flex: auto; /* Allow profile column to take full width */
-        margin-bottom: 30px;
-    }
-
-    .doctor-image-placeholder {
-        margin-bottom: 10px;
-    }
-
-    /* Ensure the quote text is left-aligned for readability when stacked */
-    .quote-text {
-        text-align: left; 
-        padding-left: 20px;
-        border-left: 4px solid var(--accent-color);
-    }
-    
-    .section-title-alt {
-        font-size: 30px;
-    }
-    /* Center the endorsement text when stacked */
-    .doctor-endorsement {
-        text-align: center;
-    }
-    
-    /* Ensure the quote text itself aligns left, even if the container is centered */
-    .doctor-endorsement .quote-text {
-        text-align: left;
-    }
-    
-    /* Ensure signoff aligns correctly */
-    .endorsement-signoff {
-        text-align: center;
-    }
-         .doctor-name {
-        font-size: 18px; /* Reduced from 22px */
-        margin-bottom: 3px;
-    }
-
-    /* Reduce the size of the Doctor's Title/Credentials */
-    .doctor-title {
-        font-size: 14px; /* Reduced from 16px */
-    }
+    .preparation-section {
+        padding-top: 30px;
+        padding-bottom: 0px; /* Minimal space at the very bottom */
+    }   
 }
-
-
-
-
                  /* ############################################### */
                  /* ############################################### */
                  /* ############################################### */
@@ -926,10 +828,24 @@ display: block;
 }
 
 
+/* Define the blinking animation */
+@keyframes blink-animation {
+    0% {
+        opacity: 1; /* Fully visible */
+    }
+    50% {
+        opacity: 0.3; /* Partially faded (the "blink") */
+    }
+    100% {
+        opacity: 1; /* Fully visible again */
+    }
+}
+
+/* Existing button style */
 .final-order-cta {
-    /* Style the button to contrast with the accent strip */
-    background-color: #000;
-    color: var(--accent-color);
+    /* Existing Styles */
+    background-color: #ff0000;
+    color: white;
     border: 2px solid #000;
     padding: 15px 30px;
     font-size: 18px;
@@ -937,13 +853,21 @@ display: block;
     text-transform: uppercase;
     text-decoration: none;
     transition: background-color 0.3s, color 0.3s;
-    margin-top: 15px; /* Space for stacking on mobile */
+    margin-top: 15px;
     flex: 0 0 auto;
+
+    /* --- ADDED FOR BLINKING --- */
+    /* Apply the animation */
+    animation: blink-animation 1.5s infinite alternate; /* 1.5s duration, infinite loop, alternates direction */
 }
 
+/* To ensure the hover effect still works well, you might want to pause the animation on hover */
 .final-order-cta:hover {
     background-color: #333;
     color: white;
+
+    /* --- ADDED FOR HOVER --- */
+    animation-play-state: paused; /* Stop the blinking when the user hovers over it */
 }
 
 /* Responsive adjustment for guarantee strip */
@@ -1288,4 +1212,156 @@ footer {
     margin: 10px 0 20px;
     font-size: 14px;
     font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* FAQ Container Styling (The main box) */
+.faq-container {
+     max-width: 1400px;
+    margin: 30px auto;
+    padding: 0 40px;
+    /* Use the darker background color for contrast */
+    background-color: var(--dark-bg, #000000); 
+    border-radius: 8px;
+    /* Replicating the distinct shadow/border effect */
+    box-shadow: 0 0 0 4px var(--accent-color), 0 0 0 6px var(--dark-bg, #141414);
+}
+
+/* FAQ Title Styling */
+.faq-title {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 25px;
+    color: var(--text-color);
+    letter-spacing: 2px;
+}
+
+/* Individual FAQ Item Styling */
+.faq-item {
+    /* Use your light-gray for separation */
+    border-bottom: 1px solid var(--light-gray); 
+    padding-top: 5px;
+}
+
+/* Question Button Styling */
+.faq-question {
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding: 18px 0;
+    font-size: 18px;
+    /* Use soft white for default question text */
+    color: var(--text-color, #eeeeee); 
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.3s;
+    font-family: inherit; /* Inherit Poppins font */
+}
+
+/* Color for the currently active/open question (and the first one) */
+.faq-question[aria-expanded="true"],
+.faq-item:first-child .faq-question {
+    color: var(--accent-color) !important; 
+}
+
+/* Hover effect */
+.faq-question:hover {
+    color: var(--accent-color);
+}
+
+/* Icon Styling (+ / -) */
+.faq-question .icon {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--accent-color); /* Yellow color for the icon */
+    line-height: 1;
+}
+
+/* Answer Content (Hidden by default, controlled by JS) */
+.faq-answer-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.faq-answer-content.open {
+    /* This class is added by JS */
+    max-height: 500px; /* Large enough value */
+    padding-bottom: 20px;
+}
+
+/* Paragraphs inside the answer */
+.faq-answer-content p {
+    margin: 0;
+    padding: 5px 0;
+    color: var(--text-color); 
+    line-height: 1.6;
+}
+
+.faq-answer-content p:first-child {
+    /* Keeping the initial text bright white and bold */
+    color: #ffffff; 
+    font-weight: bold;
+}
+
+.hindi-text {
+    font-style: italic;
+    font-size: 14px;
+    /* Softer color for the secondary language text */
+    color: var(--light-gray); 
+    margin-top: 10px !important;
+}
+
+@media (max-width: 1100px) {
+    .faq-container {
+        /* 1. Reduce the internal padding so content isn't squeezed */
+        padding: 0 15px; 
+        
+        /* 2. Add a small left/right margin to create space for the outline/shadow */
+        /* The 'auto' margin property from your desktop rule is ignored when 
+             the element is near 100% width, so we set a specific margin value. */
+        margin: 30px 10px; 
+        
+        /* NOTE: You must also ensure the main body/page content is not set 
+                 to 'overflow: hidden' as that will also crop the shadow. */
+    }
+}
+
+/* Media query for screens typically found on tablets and mobile phones */
+@media (max-width: 768px) {
+    .faq-container {
+        /* 1. Reduce the internal padding so content isn't squeezed */
+        padding: 0 15px; 
+        
+        /* 2. Add a small left/right margin to create space for the outline/shadow */
+        /* The 'auto' margin property from your desktop rule is ignored when 
+             the element is near 100% width, so we set a specific margin value. */
+        margin: 30px 10px; 
+        
+        /* NOTE: You must also ensure the main body/page content is not set 
+                 to 'overflow: hidden' as that will also crop the shadow. */
+    }
 }
